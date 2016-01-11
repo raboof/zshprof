@@ -27,4 +27,7 @@ View the result:
 kcachegrind zsh.callgrind
 ```
 
-It seems kcachegrind doesn't like it when you use the same filename for different traces.. careful.
+Limitations:
+
+* This approach is utterly broken when there is any parallellism. You'll have to fall back to zprof when that is the case.
+* It seems kcachegrind doesn't like it when you use the same filename for different traces.. careful.
