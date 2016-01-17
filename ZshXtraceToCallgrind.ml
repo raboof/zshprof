@@ -29,7 +29,10 @@ let rec pop_calls n stack calls last_micros =
     | popped :: next_head :: tail ->
       let call = Callgrind.association_for (frame_to_lff next_head) (frame_to_lff popped) (popped.micros_inclusive + last_micros) in
       let updated_head = { next_head with micros_inclusive = next_head.micros_inclusive + popped.micros_inclusive + last_micros } in
-      pop_calls (n-1) (updated_head :: tail) (call :: calls) 0;;
+      pop_calls (n-1) (updated_head :: tail) (call :: calls) 0
+    | _ ->
+      prerr_string "Warning: stack error. Output might be meaningless. Parallelism?\n";
+      (stack, calls);;
 
 let add_micros_to_top stack micros =
   let current_frame = List.hd stack in
