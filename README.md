@@ -18,7 +18,7 @@ exec 2>&3 3>&-
 Compile and run the processor:
 
 ```
-ocamlfind ocamlopt -linkpkg -thread -package str ZshXtraceToCallgrind.ml && ./a.out < /tmp/zshstart.6560.log > zsh.callgrind
+ocamlfind ocamlopt -linkpkg -thread -package str Callgrind.ml ZshXtrace.ml ZshXtraceToCallgrind.ml && ./a.out < /tmp/zshstart.6560.log > zsh.callgrind
 ```
 
 View the result:
