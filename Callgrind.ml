@@ -1,7 +1,7 @@
 module Callgrind = struct
   type costline = { lineno: int; micros: int };;
   type func = { name: string; costlines: costline list };;
-  type file = { name: string; functions: func list };;
+  type file = { filename: string; functions: func list };;
 
   type lff = { file: string; line: int; fragment: string; }
   type association = {
@@ -26,7 +26,7 @@ module Callgrind = struct
 
   let print_file file =
     print_string "fl=";
-    print_string file.name;
+    print_string file.filename;
     print_char '\n';
     List.iter print_function file.functions;;
 
@@ -61,7 +61,7 @@ module Callgrind = struct
 
   let file_for file fragment lineno micros =
     {
-      name = file;
+      filename = file;
       functions = [ function_for fragment lineno micros ]
     };;
 
