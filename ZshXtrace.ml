@@ -11,7 +11,7 @@ module ZshXtrace = struct
 
   let exists str substr =
     let regexp = Str.regexp_string substr in
-    try Str.search_forward regexp str 0; true
+    try ignore(Str.search_forward regexp str 0); true
     with Not_found -> false
 
   let parse_line _ =
